@@ -35,8 +35,9 @@ end
   def create
     binding.pry
     @song = Song.new(song_params)
-    @artist = Artist.create(name: params[:song][:artist_name])
-    @song.artist = @artist
+    if !params[:song][:artist_id] && params[:song][:artist_name]   
+      @artist = Artist.create(name: params[:song][:artist_name])
+      @song.artist = @artist
     if @song.save
       redirect_to @song
     else
