@@ -37,7 +37,7 @@ end
     if !params[:song][:artist_id] && params[:song][:artist_name]
       @artist = Artist.create(name: params[:song][:artist_name])
     else
-      @artist = Artist.find_by(id: [:song][:artist_id])
+      @artist = Artist.find_by(id: params[:song][:artist_id])
     end
     @song.artist = @artist
 
