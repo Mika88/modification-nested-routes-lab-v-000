@@ -34,7 +34,7 @@ end
 
   def create
     @song = Song.new(song_params)
-    @artist = Artist.create(name: params[:artist])
+    @artist = Artist.create(name: params[:song][:artist_name])
     if @song.save
       redirect_to @song
     else
@@ -44,7 +44,7 @@ end
 
   def edit
   if params[:artist_id]
-    artist = Artist.find_by(id: params[:song][:artist_name])
+    artist = Artist.find_by(id: params[:artist_id])
     if artist.nil?
       redirect_to artists_path, alert: "Artist not found."
     else
